@@ -10,7 +10,7 @@ router.get('/',  taskController.getAllTasks);
 // get a task by id
 router.get('/:id', taskController.getTaskById);
 // update a task by id
-router.put('/:id', taskController.updateTask);
+router.put('/:id', validateTask, taskController.updateTask);
 // delete a task by id
 router.delete('/:id', taskController.deleteTask);
 
