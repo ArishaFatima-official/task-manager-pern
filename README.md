@@ -130,10 +130,10 @@ npm run dev
 
 Add screenshots of:
 
-* Home Page
-* Create Task
-* Edit Task
-* Search Tasks
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/fa5529ee-7ae1-4210-873b-a465469e2820" />
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/8b5672e2-b1ba-44a6-aaaa-b570f00ebbf5" />
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/8abbef20-9058-4e4c-807a-b28d412076f8" />
+
 
 ## Future Improvements
 
