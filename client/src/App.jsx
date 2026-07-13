@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import About from './components/About';
-import './App.css';
 import Filterbar from "./components/FilterBar"
 import TaskCard from './components/TaskCard';
 function App() {
