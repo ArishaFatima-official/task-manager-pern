@@ -6,9 +6,17 @@ import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import About from './components/About';
 import './App.css';
-
+import Filterbar from "./components/FilterBar"
+import TaskCard from './components/TaskCard';
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [fil,setFilter] = useState("");
+
+
+const search = (tasks = []) =>
+  tasks.filter(task =>
+    !fil || task.title.toLowerCase().includes(fil.toLowerCase())
+  );
 
 useEffect(() => {
   getTasks();
@@ -18,7 +26,7 @@ useEffect(() => {
   const getTasks = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/tasks"
+      "http://localhost:3000/tasks"
     );
 
     setTasks(response.data);
@@ -30,7 +38,7 @@ useEffect(() => {
 const addTask = async (taskData) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/tasks",
+      "http://localhost:3000/tasks",
       taskData
     );
 
@@ -43,9 +51,13 @@ const addTask = async (taskData) => {
 };
 
 const updateTask = async (id, updatedTask) => {
+  
+   console.log("ID:", id);
+  console.log("Data:", updatedTask);
+
   try {
     const response = await axios.put(
-      `http://localhost:5000/tasks/${id}`,
+      `http://localhost:3000/tasks/${id}`,
       updatedTask
     );
 
@@ -65,7 +77,7 @@ const updateTask = async (id, updatedTask) => {
 const deleteTask = async (id) => {
   try {
     await axios.delete(
-      `http://localhost:5000/tasks/${id}`
+      `http://localhost:3000/tasks/${id}`
     );
 
     setTasks((prevTasks) =>
@@ -88,11 +100,15 @@ const deleteTask = async (id) => {
           element={
             <div className="container py-4">
               <TaskForm onAddTask={addTask} />
-              <TaskList
-       tasks={tasks}
-       onDelete={deleteTask}
-       onEdit={updateTask}
-    />
+              <Filterbar
+  fil={fil}
+  setFilter={setFilter}
+/>
+             <TaskList
+  filteredTasks={search(tasks)}
+  onDelete={deleteTask}
+  onEdit={updateTask}
+/>
             </div>
           }
         />
@@ -105,17 +121,18 @@ const deleteTask = async (id) => {
           }
         />
         <Route
-          path="/tasks/:id/edit"
+          path="/tasks/:id/"
           element={
             <div className="container py-4">
-              <TaskList
-       tasks={tasks}
-       onDelete={deleteTask}
-       onEdit={updateTask}
-    />
+                <TaskList
+  filteredTasks={search(tasks)}
+  onDelete={deleteTask}
+  onEdit={updateTask}
+/>
             </div>
           }
         />
+    
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>

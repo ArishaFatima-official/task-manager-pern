@@ -141,7 +141,7 @@ const TaskForm = ({ onAddTask }) => {
                   onChange={(e) => setTaskStatus(e.target.value)}
                 >
                   <option value="pending">pending</option>
-                  <option value="inprogress">inprogress</option>
+                  <option value="in progress">inprogress</option>
                   <option value="completed">completed</option>
                 </select>
               </div>
